@@ -14,13 +14,15 @@ def test_celda_semilla_gamma_intacta():
 
 
 def test_discusion_bandido_odoo():
-    assert any("flujo de inventario o facturación" in s for s in cell_sources())
+    blob = "\n".join(cell_sources())
+    assert "refactor" in blob and "arquitectura" in blob
+    assert "trazabilidad" in blob
 
 
 def test_discusion_sarsa_odoo():
     blob = "\n".join(cell_sources())
     assert "preferiría" in blob and "SARSA" in blob
-    assert "existencias reales" in blob
+    assert "producción" in blob and "core compartido" in blob
 
 
 def test_pregunta1_titulo_y_frase_con_numero():
