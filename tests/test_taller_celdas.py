@@ -21,3 +21,13 @@ def test_discusion_sarsa_odoo():
     blob = "\n".join(cell_sources())
     assert "preferiría" in blob and "SARSA" in blob
     assert "existencias reales" in blob
+
+
+def test_pregunta1_titulo_y_frase_con_numero():
+    blob = "\n".join(cell_sources())
+    assert "### 1. Bandido" in blob
+    assert any(
+        any(ch.isdigit() for ch in s) and ("0.5" in s or "√" in s or "sqrt" in s)
+        for s in cell_sources()
+        if s.startswith("**Frase.**")
+    )
