@@ -45,3 +45,12 @@ def test_pregunta3_usa_iteracion_valores():
     assert "Bodega(resbalon=0.4)" in blob
     assert "iteracion_valores" in blob
     assert any(s.startswith("**Frase.**") and ("X" in s or "resbal" in s.lower()) for s in cell_sources())
+
+
+def test_pregunta4_subclase_no_parche():
+    blob = "\n".join(cell_sources())
+    assert "### 4. Recompensas" in blob
+    assert "BodegaCosto(costo_paso=0)" in blob
+    assert "def recompensa(self, s2):" in blob
+    assert 'return {"D": 20, "X": -20}.get(self.celda(s2), -1)' in blob
+    assert any(s.startswith("**Frase.**") and ("costo" in s.lower() or "paso" in s) for s in cell_sources())
