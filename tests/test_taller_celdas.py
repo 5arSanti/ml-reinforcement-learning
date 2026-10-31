@@ -31,3 +31,9 @@ def test_pregunta1_titulo_y_frase_con_numero():
         for s in cell_sources()
         if s.startswith("**Frase.**")
     )
+
+
+def test_pregunta2_titulo_y_frase():
+    blob = "\n".join(cell_sources())
+    assert "### 2. Descuento" in blob
+    assert any(s.startswith("**Frase.**") and ("γ" in s or "gamma" in s.lower()) for s in cell_sources())
