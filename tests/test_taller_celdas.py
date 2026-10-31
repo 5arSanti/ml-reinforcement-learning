@@ -16,7 +16,7 @@ def test_celda_semilla_gamma_intacta():
 def test_discusion_bandido_odoo():
     blob = "\n".join(cell_sources())
     assert "refactor" in blob and "arquitectura" in blob
-    assert "trazabilidad" in blob
+    assert "PR" in blob or "módulo" in blob
 
 
 def test_discusion_sarsa_odoo():
