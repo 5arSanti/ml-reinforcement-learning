@@ -70,3 +70,15 @@ def test_cinco_frases_y_chequeo():
     blob = "\n".join(sources)
     assert "check_recompensa_inicio" in blob
     assert "bandido(0.0," in blob or "bandido(0.0 ," in blob
+
+
+def test_celdas_taller_tienen_codigo():
+    nb = json.loads(NB.read_text(encoding="utf-8"))
+    titles = ["### 1. Bandido", "### 2. Descuento", "### 3. Resbalón",
+              "### 4. Recompensas", "### 5. Tasa de aprendizaje"]
+    srcs = ["".join(c["source"]) for c in nb["cells"]]
+    for t in titles:
+        i = next(n for n, s in enumerate(srcs) if s.startswith(t))
+        assert nb["cells"][i + 1]["cell_type"] == "code"
+        assert nb["cells"][i + 2]["cell_type"] == "markdown"
+        assert "".join(nb["cells"][i + 2]["source"]).startswith("**Frase.**")
