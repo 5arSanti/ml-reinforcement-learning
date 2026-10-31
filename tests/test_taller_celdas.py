@@ -54,3 +54,10 @@ def test_pregunta4_subclase_no_parche():
     assert "def recompensa(self, s2):" in blob
     assert 'return {"D": 20, "X": -20}.get(self.celda(s2), -1)' in blob
     assert any(s.startswith("**Frase.**") and ("costo" in s.lower() or "paso" in s) for s in cell_sources())
+
+
+def test_pregunta5_tres_alphas():
+    blob = "\n".join(cell_sources())
+    assert "### 5. Tasa de aprendizaje" in blob
+    assert "0.01" in blob and "0.9" in blob
+    assert any(s.startswith("**Frase.**") and "α" in s for s in cell_sources())
