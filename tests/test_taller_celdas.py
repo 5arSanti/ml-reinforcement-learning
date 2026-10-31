@@ -61,3 +61,12 @@ def test_pregunta5_tres_alphas():
     assert "### 5. Tasa de aprendizaje" in blob
     assert "0.01" in blob and "0.9" in blob
     assert any(s.startswith("**Frase.**") and "α" in s for s in cell_sources())
+
+
+def test_cinco_frases_y_chequeo():
+    sources = cell_sources()
+    frases = [s for s in sources if s.startswith("**Frase.**")]
+    assert len(frases) == 5
+    blob = "\n".join(sources)
+    assert "check_recompensa_inicio" in blob
+    assert "bandido(0.0," in blob or "bandido(0.0 ," in blob
