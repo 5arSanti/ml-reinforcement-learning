@@ -37,3 +37,11 @@ def test_pregunta2_titulo_y_frase():
     blob = "\n".join(cell_sources())
     assert "### 2. Descuento" in blob
     assert any(s.startswith("**Frase.**") and ("γ" in s or "gamma" in s.lower()) for s in cell_sources())
+
+
+def test_pregunta3_usa_iteracion_valores():
+    blob = "\n".join(cell_sources())
+    assert "### 3. Resbalón" in blob
+    assert "Bodega(resbalon=0.4)" in blob
+    assert "iteracion_valores" in blob
+    assert any(s.startswith("**Frase.**") and ("X" in s or "resbal" in s.lower()) for s in cell_sources())
